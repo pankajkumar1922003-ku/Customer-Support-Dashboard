@@ -386,23 +386,28 @@ npm run preview
 
 ## 📸 Screenshots
 
-Add screenshots of your actual running application to a `screenshots/` directory in the repository, then replace or complete the entries below.
+### Dashboard
+![Support Ticket Dashboard](./screenshots/dashboard.png)
 
-| Dashboard | Create Ticket |
-|---|---|
-| `screenshots/dashboard.png` | `screenshots/create-ticket.png` |
-| Ticket listing, summary cards, and filters | Ticket creation form and validation |
+### Create Ticket
+![Create Ticket Modal](./screenshots/create-ticket.png)
 
-| Ticket Details | Mobile View |
-|---|---|
-| `screenshots/ticket-details.png` | `screenshots/mobile-view.png` |
-| Ticket information and update controls | Responsive layout on a smaller screen |
+### Ticket Details
+![Ticket Details Modal](./screenshots/ticket-details.png)
 
-To display a screenshot directly in this README after adding the file, use:
+### Search, Filters and Pagination
+![Search, Filters and Pagination](./screenshots/filters-and-search.png)
 
-```md
-![Support Ticket Dashboard](screenshots/dashboard.png)
-```
+### Responsive Mobile View
+![Mobile Dashboard](./screenshots/mobile-view.png)
+
+
+## ⏱️ Time Spent
+
+**Total Time:** [5.5 hour]
+
+The development time included frontend implementation, backend API development, MongoDB integration, input validation, search and filtering, pagination, error handling, and automated backend testing.
+
 
 ## 🔮 Future Improvements
 
