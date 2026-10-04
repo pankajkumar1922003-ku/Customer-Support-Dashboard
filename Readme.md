@@ -1,408 +1,424 @@
-# Support Ticket Dashboard
+# 🎫 Support Ticket Dashboard
 
-A full-stack **Support Ticket Dashboard** built with the MERN stack to help support teams create, track, search, filter, and manage customer support requests through a responsive web interface.
+A full-stack customer support ticket management application built with **React, Vite, Tailwind CSS, Node.js, Express, and MongoDB**. It helps support teams create, search, filter, sort, view, and update customer support tickets through a clean, responsive dashboard.
 
-The application provides ticket lifecycle management, server-side filtering and pagination, dashboard summary counts, and persistent ticket updates.
+The application includes ticket summary statistics, server-side pagination, input validation, persistent updates, and automated backend API tests.
 
-### Dashboard Overview
+## ✨ Features
 
-![Support Ticket Dashboard](screenshots/dashboard.png)
+### 📊 Dashboard
+- View the total number of support tickets.
+- See ticket counts grouped by status: Open, In Progress, and Resolved.
+- Display tickets in a structured, easy-to-navigate interface.
 
-### Create a Ticket
-
-![Create Ticket Form](screenshots/create-ticket.png)
-
-### Ticket Details and Updates
-
-![Ticket Details](screenshots/ticket-details.png)
-
-### Responsive Mobile View
-
-![Mobile Dashboard](screenshots/mobile-view.png)
-
-## Features
-
-### Ticket Management
-- Create tickets with a title, description, customer email, and priority.
-- Validate required fields and customer email format.
-- Enforce a maximum title length of 120 characters.
-- Automatically assign the default status `Open`.
-- Track ticket statuses: `Open`, `In Progress`, and `Resolved`.
-- Set ticket priorities: `Low`, `Medium`, and `High`.
-- View complete ticket details.
+### 🎟️ Ticket Management
+- Create tickets with a title, customer email, description, and priority.
+- Assign priorities: Low, Medium, and High.
+- Manage ticket statuses: Open, In Progress, and Resolved.
+- View detailed ticket information.
 - Update ticket status and priority.
-- Persist changes in the database.
+- Persist ticket changes in MongoDB.
 
-### Search and Organization
+### 🔎 Search, Filtering & Sorting
 - Search tickets by title or customer email.
 - Filter tickets by status and priority.
-- Sort tickets by creation date, newest or oldest first.
-- Use server-side pagination with 10 tickets per page.
+- Sort tickets by newest or oldest.
 - Combine search, filters, sorting, and pagination.
+- Load tickets using server-side pagination, with 10 tickets per page by default.
 
-### Dashboard and User Experience
-- Display total ticket counts.
-- Show counts for Open, In Progress, and Resolved tickets.
-- Support desktop and mobile layouts.
-- Provide loading, empty, and error states.
-- Display useful validation and API error messages.
+### 📱 User Experience
+- Responsive interface for desktop and mobile screens.
+- Loading indicators while data is being fetched.
+- Empty states when no matching tickets are found.
+- Error feedback for ticket operations.
+- Form validation for required fields, title length, and email format.
+- Reusable React components and a centralized Axios API service.
 
-### Testing
-- Automated backend tests using Vitest and Supertest.
-- Isolated database testing using MongoDB Memory Server.
+### 🧪 Backend Testing
+- Automated API tests using Vitest and Supertest.
+- In-memory MongoDB testing support through `mongodb-memory-server`.
+- Tests covering ticket creation, email validation, combined search/filter/pagination, and persistent updates.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-| Area | Technologies |
+| Layer | Technologies |
 |---|---|
-| Frontend | React, Vite, Tailwind CSS, Axios, Lucide React |
-| Backend | Node.js, Express.js |
+| Frontend | React, Vite, Tailwind CSS |
+| Routing | React Router |
+| Icons | Lucide React |
+| API communication | Axios |
+| Backend | Node.js, Express |
 | Database | MongoDB, Mongoose |
 | Testing | Vitest, Supertest, MongoDB Memory Server |
-| Development | Git, GitHub, npm |
+| Development tools | ESLint, Nodemon |
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
-Customer-Support-Dashboard/
-├── backend/
-│   ├── scripts/
-│   │   └── seed.js
-│   ├── src/
-│   │   ├── config/
-│   │   │   └── db.js
-│   │   ├── controllers/
-│   │   │   └── ticketController.js
-│   │   ├── middleware/
-│   │   │   └── errorHandler.js
-│   │   ├── models/
-│   │   │   └── Ticket.js
-│   │   ├── routes/
-│   │   │   └── ticketRoutes.js
-│   │   ├── tests/
-│   │   │   └── ticket.test.js
-│   │   ├── utils/
-│   │   │   └── httpError.js
-│   │   ├── app.js
-│   │   └── server.js
-│   ├── .env.example
-│   ├── .gitignore
-│   └── package.json
+Support-Ticket-Dashboard/
+backend/
+├── scripts/
+│   └── seed.js
+├── src/
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   └── ticketController.js
+│   ├── middleware/
+│   │   └── errorHandler.js
+│   ├── models/
+│   │   └── Ticket.js
+│   ├── routes/
+│   │   └── ticketRoutes.js
+│   ├── tests/
+│   │   └── ticket.test.js
+│   ├── utils/
+│   │   └── httpError.js
+│   ├── app.js
+│   └── server.js
+├── .env
+└── package.json
+│
 ├── frontend/
+│   ├── public/
 │   ├── src/
 │   │   ├── assets/
 │   │   ├── components/
+│   │   │   ├── CreateTicketModal.jsx
+│   │   │   ├── EmptyState.jsx
+│   │   │   ├── ErrorMessage.jsx
+│   │   │   ├── LoadingSpinner.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Pagination.jsx
+│   │   │   ├── SummaryCards.jsx
+│   │   │   ├── TicketCard.jsx
+│   │   │   ├── TicketDetailsModal.jsx
+│   │   │   ├── TicketFilters.jsx
+│   │   │   └── TicketTable.jsx
 │   │   ├── hooks/
+│   │   │   └── useTickets.js
 │   │   ├── pages/
+│   │   │   └── Dashboard.jsx
 │   │   ├── services/
 │   │   │   └── api.js
 │   │   ├── App.jsx
 │   │   ├── index.css
 │   │   └── main.jsx
+│   ├── .env
 │   ├── .env.example
-│   ├── .gitignore
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
-├── screenshots/
-│   ├── dashboard.png
-│   ├── create-ticket.png
-│   ├── ticket-details.png
-│   ├── filters-and-search.png
-│   └── mobile-view.png
-├── .gitignore
+│   └── package.json
+│
 └── README.md
 ```
 
-*The structure above represents the intended project layout. Keep only files and folders that exist in your repository.*
+*Note: The structure above highlights the main application files. Other configuration files and dependencies are omitted for readability.*
 
-## Prerequisites
+## ⚙️ Prerequisites
 
-Before running the project, install:
+Before running the project, make sure you have:
 
-- [Node.js](https://nodejs.org/) and npm.
-- [MongoDB Atlas](https://www.mongodb.com/atlas) or a local MongoDB instance.
-- [Git](https://git-scm.com/) (optional, for cloning the repository).
+- [Node.js](https://nodejs.org/) installed.
+- npm installed (included with Node.js).
+- [MongoDB](https://www.mongodb.com/) running locally or a MongoDB Atlas connection string.
+- Git installed to clone the repository.
 
-## Getting Started
+## 🚀 Getting Started
 
 ### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/pankajkumar1922003-ku/Customer-Support-Dashboard.git
-
 cd Customer-Support-Dashboard
 ```
 
 ### 2. Configure the Backend
 
-Navigate to the backend directory and install dependencies:
+Open a terminal in the project root and navigate to the backend:
 
 ```bash
 cd backend
 npm install
 ```
 
-Create a `.env` file inside the `backend/` directory.
-
-**Backend environment variables:**
+Create a `.env` file inside the `backend` directory:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>/support_ticket_dashboard
+MONGODB_URI=mongodb://127.0.0.1:27017/support_ticket_dashboard
+CLIENT_URL=http://localhost:5173
 ```
 
-Replace the placeholders with your actual MongoDB Atlas credentials and cluster details. Alternatively, use your local MongoDB connection string.
+**Environment variables**
 
-The URI above is an example format, not a working connection string.
+| Variable | Description | Example |
+|---|---|---|
+| `PORT` | Port on which the backend server runs | `5000` |
+| `MONGODB_URI` | MongoDB connection string | `mongodb://127.0.0.1:27017/support_ticket_dashboard` |
+| `CLIENT_URL` | Frontend origin allowed by CORS | `http://localhost:5173` |
 
-Start the backend:
+If you are using MongoDB Atlas, replace the local MongoDB URI with your Atlas connection string.
+
+Start the backend development server:
 
 ```bash
 npm run dev
 ```
 
-The local API base URL is expected to be:
+The API should be available at:
 
 ```text
-http://localhost:5000/api
+http://localhost:5000
 ```
 
-Keep the backend terminal running.
+Check the backend health endpoint:
+
+```text
+http://localhost:5000/api/health
+```
+
+A successful response looks like:
+
+```json
+{
+  "success": true,
+  "message": "Support Ticket API is running"
+}
+```
 
 ### 3. Configure the Frontend
 
-Open a second terminal from the project root:
+Open a **second terminal** from the project root:
 
 ```bash
 cd frontend
 npm install
 ```
 
-Create a `.env` file inside the `frontend/` directory.
-
-**Frontend environment variables:**
+Create or update the frontend `.env` file:
 
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
-Start the frontend:
+The frontend uses this variable to communicate with the backend API.
+
+Start the frontend development server:
 
 ```bash
 npm run dev
 ```
 
-Open the local URL displayed in the terminal. With the default Vite configuration, it is usually:
+Open the local URL printed by Vite, typically:
 
 ```text
 http://localhost:5173
 ```
 
-**Important:** If you change an environment variable, restart the corresponding development server.
+Keep both the backend and frontend development servers running while using the application.
 
-## Environment Variables Reference
+## 🌱 Seed the Database
 
-| Variable | Location | Description |
-|---|---|---|
-| `PORT` | `backend/.env` | Port used by the backend server |
-| `MONGO_URI` | `backend/.env` | MongoDB connection string |
-| `VITE_API_URL` | `frontend/.env` | Base URL of the backend API |
+The backend includes a seed script that inserts 30 sample support tickets with varied titles, priorities, statuses, customer emails, and timestamps.
 
-Never put MongoDB credentials in frontend environment variables. Variables prefixed with `VITE_` are exposed to the browser.
+To populate the database, open a terminal:
 
-## API Documentation
+```bash
+cd backend
+npm run seed
+```
 
-The default local API base URL is:
+**Important:** The seed script deletes existing documents from the `Ticket` collection before inserting sample data. Run it only against a disposable development or test database. Do not run it against production or any database containing data you want to preserve.
+
+## 🔌 API Documentation
+
+Base URL:
 
 ```text
 http://localhost:5000/api
 ```
 
-### Endpoints
+### Available Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `GET` | `/tickets` | Retrieve tickets with search, filters, sorting, and pagination |
-| `GET` | `/tickets/summary` | Retrieve total ticket count and status counts |
-| `POST` | `/tickets` | Create a ticket |
-| `GET` | `/tickets/:id` | Retrieve an individual ticket, if implemented |
-| `PATCH` | `/tickets/:id` | Update ticket status and/or priority |
+| GET | `/api/health` | Check API health |
+| GET | `/api/tickets` | Retrieve tickets |
+| POST | `/api/tickets` | Create a ticket |
+| GET | `/api/tickets/summary` | Retrieve ticket summary counts |
+| GET | `/api/tickets/:id` | Retrieve a ticket by ID |
+| PATCH | `/api/tickets/:id` | Update ticket status or priority |
 
-### Ticket List Query Parameters
+### Search, Filter, Sort & Pagination
 
-| Parameter | Example | Description |
+The ticket listing endpoint supports query parameters:
+
+| Parameter | Description | Example |
 |---|---|---|
-| `page` | `page=1` | Page number |
-| `limit` | `limit=10` | Number of tickets per page |
-| `search` | `search=Login` | Search by title or customer email |
-| `status` | `status=Open` | Filter by ticket status |
-| `priority` | `priority=High` | Filter by ticket priority |
-| `sort` | `sort=newest` | Sort by creation date |
-
-Supported sort values are `newest` and `oldest`.
+| `search` | Search by title or customer email | `search=payment` |
+| `status` | Filter by ticket status | `status=Open` |
+| `priority` | Filter by priority | `priority=High` |
+| `sort` | Sort by creation date | `sort=newest` |
+| `page` | Page number | `page=1` |
+| `limit` | Number of tickets per page | `limit=10` |
 
 Example request:
 
 ```http
-GET /api/tickets?page=1&limit=10&sort=newest
+GET /api/tickets?search=payment&status=Open&priority=High&sort=newest&page=1&limit=10
 ```
 
-Filters and search parameters can be combined, subject to the backend implementation.
+Search, filters, sorting, and pagination are processed on the backend. Pagination metadata is returned alongside the ticket list.
 
-### Create Ticket Example
+### Example: Create a Ticket
 
-Request body:
+**Request**
+
+```http
+POST /api/tickets
+Content-Type: application/json
+```
 
 ```json
 {
-  "title": "Login issue",
-  "description": "Customer is unable to log in to the dashboard.",
-  "customerEmail": "rahul@example.com",
+  "title": "Unable to complete payment",
+  "description": "The customer receives an error when attempting to pay.",
+  "customerEmail": "customer@example.com",
   "priority": "High"
 }
 ```
 
-The status defaults to `Open` when omitted.
+New tickets default to the `Open` status when a status is not supplied.
 
-### Update Ticket Example
+### Example: Update a Ticket
 
-Request body:
+**Request**
+
+```http
+PATCH /api/tickets/TICKET_ID
+Content-Type: application/json
+```
 
 ```json
 {
   "status": "In Progress",
-  "priority": "Medium"
+  "priority": "High"
 }
 ```
 
-The API should validate the supplied fields and return appropriate HTTP status codes and error responses.
+Replace `TICKET_ID` with an actual ticket ID returned by the API. Updates support the `status` and `priority` fields.
 
-## Data Model
-
-A support ticket contains the following fields:
+### Ticket Fields
 
 | Field | Description |
 |---|---|
-| `title` | Required; maximum 120 characters |
-| `description` | Required ticket description |
-| `customerEmail` | Required; valid email address |
-| `priority` | Low, Medium, or High |
-| `status` | Open, In Progress, or Resolved; defaults to Open |
-| `createdAt` | Automatically generated creation timestamp |
-| `updatedAt` | Automatically generated update timestamp |
+| `title` | Required ticket title, maximum 120 characters |
+| `description` | Required description of the issue |
+| `customerEmail` | Required customer email address |
+| `priority` | `Low`, `Medium`, or `High`; defaults to `Medium` |
+| `status` | `Open`, `In Progress`, or `Resolved`; defaults to `Open` |
+| `createdAt` | Creation timestamp |
+| `updatedAt` | Last update timestamp |
 
-Mongoose timestamps are used to maintain creation and update times.
+## 🧪 Running Tests
 
-## Seed Sample Data
+The backend test suite uses Vitest and Supertest, with MongoDB Memory Server supporting isolated database tests.
 
-The backend includes a seed script for generating sample tickets.
-
-From the backend directory, run:
+Run the backend tests:
 
 ```bash
-npm run seed
-```
-
-Check `backend/package.json` for the available script and confirm that the seed data contains at least 25 tickets with varied statuses and priorities.
-
-**Warning:** The current seed script uses `Ticket.deleteMany({})` before inserting sample records. This can delete existing tickets from the configured collection. Run it only against a disposable development database, never against production data.
-
-## Running Tests
-
-From the backend directory, install dependencies and run:
-
-```bash
+cd backend
 npm test
 ```
 
-The project uses Vitest and Supertest for automated tests, with MongoDB Memory Server for isolated database testing.
+### Verified Test Results
 
-Review the test results and ensure that at least three meaningful automated tests cover areas such as:
+The backend test suite was executed successfully with the following result:
 
-- Ticket input validation.
-- Ticket search, filtering, or querying.
-- Ticket status or priority updates.
+```text
+Test Files  1 passed (1)
+Tests       4 passed (4)
+```
 
-Refer to `backend/package.json` for the actual test scripts configured in the project.
+The four tests cover:
 
-## Technical Decisions
+1. Creating a ticket with the default `Open` status.
+2. Rejecting an invalid email address.
+3. Combining search, filters, and pagination.
+4. Persisting status and priority updates.
 
-- **React and Vite:** Provide a component-based frontend and development workflow.
-- **Tailwind CSS:** Supports responsive layouts and reusable styling.
-- **Node.js and Express.js:** Handle API requests and backend business logic.
-- **MongoDB and Mongoose:** Provide persistent storage and structured data validation.
-- **Vitest and Supertest:** Support automated API testing.
-- **MongoDB Memory Server:** Allows tests to run against an isolated database.
+The test run also produced a Mongoose deprecation warning related to the `new` option in `findOneAndUpdate()`. The tests passed, but the warning can be addressed in a future cleanup.
 
-These choices keep the frontend, API, and database responsibilities separated and make the codebase easier to maintain.
+### Frontend Scripts
 
-## Assumptions
+Run these commands from the `frontend` directory:
 
-- Authentication and role-based access control are outside the assignment scope.
-- Tickets use the predefined status and priority values.
-- Each ticket must include a title, description, and valid customer email.
-- Search, filtering, sorting, and pagination are handled by the backend.
-- Dashboard summary counts represent the full dataset rather than only the currently filtered results.
+```bash
+npm run dev
+npm run build
+npm run lint
+npm run preview
+```
 
-## Known Limitations
+- `npm run dev` starts the Vite development server.
+- `npm run build` creates a production build.
+- `npm run lint` runs ESLint.
+- `npm run preview` previews a production build.
 
-- The application does not include authentication or role-based access control.
-- The documented local setup assumes the backend runs on port `5000` and the frontend uses port `5173`, unless configured otherwise.
-- A production deployment is not required by the assignment.
-- Add any other known limitations based on the final implementation and testing results.
+## 🏗️ Technical Decisions
 
-## Troubleshooting
+- **React components:** The interface is divided into reusable components for ticket cards, tables, filters, pagination, summary cards, and modals.
+- **Custom hook:** `useTickets` centralizes ticket data fetching, filter state, pagination, summary loading, and ticket updates.
+- **Centralized API service:** Axios requests are managed through a shared API module, keeping HTTP communication separate from UI components.
+- **Server-side pagination:** The backend returns only the requested page of tickets, along with pagination metadata.
+- **MongoDB and Mongoose:** Ticket data is stored persistently and validated using the ticket schema and backend validation logic.
+- **Express middleware:** Centralized error handling provides consistent API error responses.
+- **Automated backend tests:** Vitest and Supertest verify key API behaviours without relying on a persistent development database for every test.
 
-**Frontend cannot reach the API**
-- Confirm the backend server is running.
-- Verify that `VITE_API_URL` matches the backend API base URL.
-- Check the browser console and backend terminal for errors.
+## 📌 Assumptions & Limitations
 
-**MongoDB connection fails**
-- Verify the `MONGO_URI` value.
-- Check your database username and password.
-- Confirm the Atlas database user's permissions and network access settings.
+- The application is designed as a support ticket dashboard, not a complete customer support platform.
+- Authentication, authorization, and role-based access control are not included.
+- Ticket status and priority can be updated; editing the ticket title, description, or customer email is not supported by the update endpoint.
+- Search covers ticket titles and customer email addresses, not ticket descriptions.
+- The backend test suite currently contains four verified tests; it does not represent exhaustive coverage of every endpoint and edge case.
+- The application requires a reachable MongoDB database for normal backend operation.
+- The seed script is destructive to existing documents in the target ticket collection and should be used only with disposable data.
 
-**Tickets are not displayed**
-- Check that the database contains ticket documents.
-- Test `GET /api/tickets?page=1&limit=10&sort=newest`.
-- Inspect the backend response and browser console.
+## 📸 Screenshots
 
-**Dashboard summary counts are incorrect**
-- Test `GET /api/tickets/summary`.
-- Ensure summary counts are calculated across the complete dataset.
+Add screenshots of your actual running application to a `screenshots/` directory in the repository, then replace or complete the entries below.
 
-**CORS errors**
-- Verify that the backend CORS configuration permits requests from the frontend origin.
+| Dashboard | Create Ticket |
+|---|---|
+| `screenshots/dashboard.png` | `screenshots/create-ticket.png` |
+| Ticket listing, summary cards, and filters | Ticket creation form and validation |
 
-**Environment changes do not apply**
-- Restart the relevant development server after changing `.env`.
+| Ticket Details | Mobile View |
+|---|---|
+| `screenshots/ticket-details.png` | `screenshots/mobile-view.png` |
+| Ticket information and update controls | Responsive layout on a smaller screen |
 
-**Tests fail**
-- Check installed dependencies, the test script, and MongoDB Memory Server setup.
-- Review the test output to identify the failing assertion or database error.
+To display a screenshot directly in this README after adding the file, use:
 
-## Security Notes
+```md
+![Support Ticket Dashboard](screenshots/dashboard.png)
+```
 
-- Keep actual credentials in local `.env` files.
-- Never commit real `.env` files to GitHub.
-- Never expose MongoDB connection strings in frontend code.
-- Use a database user with only the permissions required by the application.
-- Restrict MongoDB network access where possible.
-- Rotate credentials immediately if they have been exposed publicly.
+## 🔮 Future Improvements
 
-## AI Assistance
+- Add authentication and role-based permissions.
+- Expand automated test coverage for validation, error handling, and edge cases.
+- Add ticket editing and deletion with appropriate permissions.
+- Improve accessibility and keyboard navigation.
+- Add deployment configuration and production monitoring.
 
-AI tools were used for development guidance, debugging assistance, frontend/backend integration support, and documentation drafting. The implementation and API behavior should be reviewed and tested by the author, who should be able to explain and modify the submitted code.
-
-## Author
+## 👨‍💻 Author
 
 **Pankaj Kumar**
 
-- GitHub: [pankajkumar1922003-ku](https://github.com/pankajkumar1922003-ku)
-- Repository: [Customer Support Dashboard](https://github.com/pankajkumar1922003-ku/Customer-Support-Dashboard)
+- GitHub: [@pankajkumar1922003-ku](https://github.com/pankajkumar1922003-ku)
+- Repository: [Customer-Support-Dashboard](https://github.com/pankajkumar1922003-ku/Customer-Support-Dashboard)
 
 ---
 
-Built as part of a Full-Stack Web Application Developer technical assignment.
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
